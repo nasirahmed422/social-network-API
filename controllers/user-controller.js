@@ -56,8 +56,8 @@ const userController = {
           : Thought.updateMany({ _id: { $in: User.userThoughts } },
             { userName: User.userName }
           ))
-      .then(() => res.json({ message: "User and their thoughts have been updated" }))
-      .catch(err => res.status(404).json(err))
+      .then(res.json({ message: "User and their thoughts have been updated" }))
+      .catch(err => res.status(400).json(err));
   },
 
   // Add friends using addToSet
@@ -82,7 +82,7 @@ const userController = {
           ? res.status(404).json({ message: "User was not found" })
           : Thought.deleteMany({ _id: { $in: User.userThoughts } })
       )
-      .then(() => res.json({ message: "User and their thoughts were deleted" }))
+      .then(res.json({ message: "User and their thoughts were deleted" }))
       .catch(err => res.status(404).json(err))
   }
 };
